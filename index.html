@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Quadro Kanban</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <div>
+      <h1>Quadro Kanban</h1>
+      <p>Arraste os cards entre as colunas ou use o seletor “Mover para”.</p>
+    </div>
+    <div class="user-bar" id="userBar" hidden>
+      <span id="userName"></span>
+      <button class="btn btn-primary" id="openModal" type="button">+ Adicionar nova tarefa</button>
+      <button class="btn" id="logout" type="button">Sair</button>
+    </div>
+  </header>
+
+  <section class="auth-wrap" id="auth" hidden>
+    <div class="auth-card">
+      <div class="tabs" role="tablist" aria-label="Acesso">
+        <button type="button" role="tab" id="tabLogin" aria-selected="true">Entrar</button>
+        <button type="button" role="tab" id="tabRegister" aria-selected="false">Criar conta</button>
+      </div>
+      <form id="authForm" novalidate>
+        <h2 id="authTitle">Entrar na sua conta</h2>
+        <label id="nameWrap" hidden>Nome
+          <input id="aName" maxlength="60" autocomplete="name">
+        </label>
+        <label>E-mail
+          <input id="aEmail" type="email" autocomplete="email" required>
+        </label>
+        <label>Senha
+          <input id="aPass" type="password" autocomplete="current-password" required>
+          <span class="hint" id="passHint" hidden>Use pelo menos 8 caracteres, com letras e números.</span>
+        </label>
+        <p class="error" id="authErr" role="alert"></p>
+        <button class="btn btn-primary" type="submit" id="authSubmit">Entrar</button>
+      </form>
+    </div>
+  </section>
+
+  <main id="board" hidden></main>
+
+  <dialog id="modal" aria-labelledby="modalTitle">
+    <form id="taskForm" novalidate>
+      <h2 id="modalTitle">Nova tarefa</h2>
+      <label>Título
+        <input id="title" name="title" maxlength="80" autocomplete="off" required aria-describedby="titleErr">
+        <p class="error" id="titleErr" role="alert"></p>
+      </label>
+      <label>Descrição (opcional)
+        <textarea id="desc" name="desc" maxlength="400"></textarea>
+      </label>
+      <div class="form-actions">
+        <button class="btn" type="button" id="cancel">Cancelar</button>
+        <button class="btn btn-primary" type="submit">Salvar tarefa</button>
+      </div>
+    </form>
+  </dialog>
+
+  <div id="toasts" role="status" aria-live="polite"></div>
+
+<script type="module" src="app.js"></script>
+</body>
+</html>
